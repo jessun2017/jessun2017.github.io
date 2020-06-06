@@ -33,8 +33,13 @@ jobs:
       with:
         hugo-version: '0.73.0'
 
-    # Runs a set of commands using the runners shell
-    - name: Publish to ./public/
+    - name: Build 
       run: |
-        git worktree add -B master public origin/master
         hugo -b https://jessun2017.github.io
+
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        publish_branch: master  # default: gh-pages
