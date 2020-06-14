@@ -1,7 +1,7 @@
 ---
 title: "使用 hugo 部署 Github Pages 静态博客总结与实践"
 date: "2020-06-14"
-draft: true
+draft: false
 ---
 
 ## 准备
@@ -22,3 +22,53 @@ draft: true
    进行。一旦完成写作，将 `src` 推送到 Github，Github Actions 自动使用 `hugo` 命令将博客静态文件生成至 `master` 分支，然
    后访问 <username>.github.io 来访问博客。
 
+3. Gihub Actions 的自动化处理步骤为：
+
+```yml
+# This is a basic workflow to help you get started with Actions
+
+name: Hugo on Github Pages
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ src ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    # Runs a single command using the runners shell
+    - name: Clean directory ./public/
+      run: |
+        rm -rf .git/worktrees/public/
+        rm -fr ./public/
+
+    - name: Setup hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.71.1'
+
+    # use hugo cli build blogs
+    - name: Build
+      run: |
+        hugo -b https://jessun2017.github.io
+
+    # Deploy blog site files to master branch
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        publish_branch: master  # default: gh-pages
+```
