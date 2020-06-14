@@ -1,7 +1,12 @@
 ---
+
 title: "使用 hugo 部署 Github Pages 静态博客总结与实践"
 date: "2020-06-14"
 draft: false
+categories:
+  - "hugo"
+tags: [ "hugo", "blogs", "Github Pages"]
+
 ---
 
 ## 准备
@@ -74,3 +79,9 @@ jobs:
         github_token: ${{ secrets.TOKEN }}
         publish_branch: master  # default: gh-pages
 ```
+
+## 其他
+
+写作工具：`vim/neovim` + [iamcco/markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)，可以设置兼容
+`YAML` 格式的 Front Matter
+markdown lint 工具：[fannheyward/coc-markdownlint](https://github.com/fannheyward/coc-markdownlint)
