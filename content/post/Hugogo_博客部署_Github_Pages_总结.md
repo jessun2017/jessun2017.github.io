@@ -15,14 +15,16 @@ draft: false
 对于 hugo 这种静态博客而言，需要进入仓库的其实是两样东西：一个是博客源码，一个是生成后的静态网站文件(hugo 下默认是
 `./public` 目录)，其中博客源码包含博客的文章和主题文件，而静态网站文件需要被 Github Pages 服务识别。
 
-1. 新建一个仓库用户存放 blog。如果名字为<username>.github.io，那么 Github Pages 服务识别的分支是 `master` 分支，所以
+1. 新建一个仓库用户存放 blog。如果名字为`<username>.github.io`，那么 Github Pages 服务识别的分支是 `master` 分支，所以
    master 分支必须是发布后的静态文件。而如果是其他命名，那么 Github Pages 服务可以识别为 `gh-pages` 分支。
 
 2. `master` 分支为发布后文件，那么需要新建一个分支 `src` 作为博客源码。那么博客的写作与修改、站点的设置都在 `src` 分支上
    进行。一旦完成写作，将 `src` 推送到 Github，Github Actions 自动使用 `hugo` 命令将博客静态文件生成至 `master` 分支，然
-   后访问 <username>.github.io 来访问博客。
+   后访问 `<username>.github.io` 来访问博客。
 
-3. Gihub Actions 的自动化处理步骤为：
+## Github Actions 的 yml 文件
+
+将 `src` push 到 github 上后，接下来会按照 yml 文件的步骤执行来生成和部署博客。
 
 ```yml
 # This is a basic workflow to help you get started with Actions
