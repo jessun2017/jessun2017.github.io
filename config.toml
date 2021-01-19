@@ -7,10 +7,37 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
+title = "Jessun's Blog"
+
+theme = "hermit_zola"
+
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
+highlight_theme = "ayu-dark"
 
 [extra]
 # Put all your custom variables here
+
+toc=true
+
+hermit_social = [
+    { name = "github", link = "https://github.com" },
+    { name = "email", link = "mailto:name@domain.com" }
+]
+
+home_subtitle = "Welcome to my blog"
+
+hermit_menu = [
+    { link = "/posts", name = "Posts" },
+    { link = "/about", name = "About" }
+]
+
+[extra.author]
+name = "Jessun"
+email = "jessun2017@gmail.com"
+
+[extra.google_analytics]
+enable = false
+id = "UA-4XXXXXXX-X"
