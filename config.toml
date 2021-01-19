@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "http://jessun2017.github.io"
+base_url = "https://jessun2017.github.io"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -24,7 +24,7 @@ toc=true
 
 hermit_social = [
     { name = "github", link = "https://github.com" },
-    { name = "email", link = "mailto:name@domain.com" }
+    { name = "email", link = "mailto:jessun2017@gmail.com" }
 ]
 
 home_subtitle = "Welcome to my blog"
