@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: [ src ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+
+      - name: Clean directory ./public/
+        run: |
+          rm -rf .git/worktrees/public/ 
+          rm -fr ./public/
+
+      - name: 'Build and deploy'
+        uses: shalzz/zola-deploy-action@master
+        env:
+          PAGES_BRANCH: master
+          BUILD_DIR: .
+          TOKEN: ${{ secrets.TOKEN }}
