@@ -1,3 +1,5 @@
+title = "Jessun's Blog"
+
 # The URL the site will be built for
 base_url = "https://jessun2017.github.io"
 
@@ -7,9 +9,9 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-title = "Jessun's Blog"
-
 theme = "hermit_zola"
+
+taxonomies = [{ name = "tags" }]
 
 [markdown]
 # Whether to do syntax highlighting
@@ -20,19 +22,16 @@ highlight_theme = "ayu-dark"
 [extra]
 # Put all your custom variables here
 
-toc=true
+toc = true
 
 hermit_social = [
-    { name = "github", link = "https://github.com" },
-    { name = "email", link = "mailto:jessun2017@gmail.com" }
+  { name = "github", link = "https://github.com" },
+  { name = "email", link = "mailto:jessun1990@gmail.com" },
 ]
 
 home_subtitle = "Welcome to my blog"
 
-hermit_menu = [
-    { link = "/posts", name = "Posts" },
-    { link = "/about", name = "About" }
-]
+hermit_menu = [{ link = "/posts", name = "Posts" }, { link = "/about", name = "About" }]
 
 [extra.author]
 name = "Jessun"
