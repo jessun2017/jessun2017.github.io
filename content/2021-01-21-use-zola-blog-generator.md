@@ -16,7 +16,8 @@ Zola 官方列了一张表格表示自己与Hugo的区别，https://github.com/g
 # 3. 主题
 
 ~~hermit_zola: https://github.com/jessun2017/hermit_zola 做了一些 bugfix。~~
-https://github.com/jessun2017/anpu-zola-theme 更加简洁
+~~anpu-zola-theme: https://github.com/jessun2017/anpu-zola-theme 更加简洁~~
+even: https://github.com/jessun2017/even 更加简洁美观
 
 # 4. Github Page 部署
 
