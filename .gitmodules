@@ -1,3 +1,3 @@
-[submodule "themes/anpu-zola-theme"]
-	path = themes/anpu-zola-theme
-	url = git@github.com:jessun2017/anpu-zola-theme.git
+[submodule "themes/even"]
+	path = themes/even
+	url = git@github.com:jessun2017/even
