@@ -27,21 +27,13 @@ highlight_theme = "ayu-dark"
 
 toc = true
 
-# hermit_social = [
-#   { name = "github", link = "https://github.com" },
-#   { name = "email", link = "mailto:jessun1990@gmail.com" },
-# ]
-
-home_subtitle = "Welcome to my blog"
-
 anpu_menu_links = [
-    { url = "$BASE_URL/about/", name = "About" },
+    { url = "$BASE_URL/categories/", name = "Categories" },
     { url = "$BASE_URL/tags/", name = "Tags" },
+    { url = "$BASE_URL/about/", name = "About" },
 ]
 
-# hermit_menu = [{ link = "/posts", name = "Posts" }, { link = "/about", name = "About" }]
 anpu_date_format = "%Y-%m-%d"
-
 
 [extra.author]
 name = "Jessun"
