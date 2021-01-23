@@ -1,5 +1,5 @@
 +++
-title = "(WIP)Rust From Scratch Ch.1 | Rust 基本语法"
+title = "(WIP)Rust From Scratch chap.01 | Rust 基本语法"
 draft = true
 
 [taxonomies]
