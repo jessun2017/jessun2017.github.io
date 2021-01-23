@@ -1,5 +1,5 @@
 +++
-title = "Rust From Scratch Ch.0 | Rust 介绍与安装"
+title = "Rust From Scratch chap.0 | Rust 介绍与安装"
 
 [taxonomies]
 tags = ["Rust"]
@@ -20,13 +20,13 @@ categories = ["Rust From Scratch"]
 - 官方网站：[https://www.rust-lang.org/](https://www.rust-lang.org/)
 
 - 各种文档：[https://prev.rust-lang.org/zh-CN/documentation.html](https://prev.rust-lang.org/zh-CN/documentation.html)
-    和[https://rustwiki.org/zh-CN/](https://rustwiki.org/zh-CN/)
+    和 [https://rustwiki.org/zh-CN/](https://rustwiki.org/zh-CN/)
 
-    - [<<Rust 程序设计语言>>](https://kaisery.github.io/trpl-zh-cn/)
+    - [<< Rust 程序设计语言 >>](https://kaisery.github.io/trpl-zh-cn/)
 
-    - [ << Rust By Example>> ](https://rustwiki.org/rust-by-example/)
+    - [<< Rust By Example >>](https://rustwiki.org/rust-by-example/)
 
-    - [<<Rust 高级教程>>](https://doc.rust-lang.org/nomicon/)
+    - [<< Rust 高级教程 >>](https://doc.rust-lang.org/nomicon/)
 
 ---
 
