@@ -9,9 +9,12 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "hermit_zola"
+theme = "anpu-zola-theme"
 
-taxonomies = [{ name = "tags" }]
+taxonomies = [
+    { name = "categories" },
+    { name = "tags" },
+]
 
 [markdown]
 # Whether to do syntax highlighting
@@ -24,14 +27,21 @@ highlight_theme = "ayu-dark"
 
 toc = true
 
-hermit_social = [
-  { name = "github", link = "https://github.com" },
-  { name = "email", link = "mailto:jessun1990@gmail.com" },
-]
+# hermit_social = [
+#   { name = "github", link = "https://github.com" },
+#   { name = "email", link = "mailto:jessun1990@gmail.com" },
+# ]
 
 home_subtitle = "Welcome to my blog"
 
-hermit_menu = [{ link = "/posts", name = "Posts" }, { link = "/about", name = "About" }]
+anpu_menu_links = [
+    { url = "$BASE_URL/about/", name = "About" },
+    { url = "$BASE_URL/tags/", name = "Tags" },
+]
+
+# hermit_menu = [{ link = "/posts", name = "Posts" }, { link = "/about", name = "About" }]
+anpu_date_format = "%Y-%m-%d"
+
 
 [extra.author]
 name = "Jessun"
