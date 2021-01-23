@@ -1,11 +1,11 @@
 +++
 title = "About"
 path = "about"
-template = "page.html"
+template = "about.html"
 +++
 
-My name is Jessun. And I am a program developer. Golang, Rust ...
-
-Email: [jessun1990@gmail.com](mailto:jessun1990@gmail.com)   
+My Name is Jessun.
 
 Github: [http://github.com/jessun2017](http://github.com/jessun2017)
+
+Mail: [jessun1990@gmail.com](mailto:jessun1990@gmail.com)
