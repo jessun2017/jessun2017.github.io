@@ -1,7 +1,6 @@
 +++
 title = "Rust From Scratch Ch.0 | Rust 介绍与安装"
 
-
 [taxonomies]
 tags = ["Rust"]
 categories = ["Rust From Scratch"]
@@ -16,6 +15,19 @@ categories = ["Rust From Scratch"]
 > 也在同一年，其编译器源代码开始由原本的OCaml语言转移到用Rust语言，进行bootstrapping工作，称做rustc，并于2011年实际完成。
 > 这个可自我编译的编译器在架构上采用了LLVM做为它的后端。
 
+## 1.2 官方网站及文档指南
+
+- 官方网站：[https://www.rust-lang.org/](https://www.rust-lang.org/)
+
+- 各种文档：[https://prev.rust-lang.org/zh-CN/documentation.html](https://prev.rust-lang.org/zh-CN/documentation.html)
+    和[https://rustwiki.org/zh-CN/](https://rustwiki.org/zh-CN/)
+
+    - [<<Rust 程序设计语言>>](https://kaisery.github.io/trpl-zh-cn/)
+
+    - [ << Rust By Example>> ](https://rustwiki.org/rust-by-example/)
+
+    - [<<Rust 高级教程>>](https://doc.rust-lang.org/nomicon/)
+
 ---
 
 # 2. Rust 环境初始化
@@ -23,7 +35,7 @@ categories = ["Rust From Scratch"]
 ## 2.1 使用 rustup 管理不同版本的 Rust
 
 rustup 是 Rust 官方的版本管理工具。应当作为安装 Rust 的首选。安装 Rust 使用来自官方的 `rustup` 工具，[官方推荐](https://www.rust-lang.org/tools/install)。
-`rustup` 命令文档请访问 [https://rust-lang.github.io/rustup/](https://rust-lang.github.io/rustup/)。中文版请访问 [https://github.com/chinanf-boy/rustup.rs-zh](https://github.com/chinanf-boy/rustup.rs-zh)
+`rustup` 命令文档请访问 [https://rust-lang.github.io/rustup/](https://rust-lang.github.io/rustup/)。中文版请访问 [https://github.com/chinanf-boy/rustup.rs-zh](https://github.com/chinanf-boy/rustup.rs-zh)。
 `rustc` 是 Rust 的编译器，`cargo` 是 Rust 的包管理工具。
 
 ```bash
@@ -89,7 +101,7 @@ $ cargo init new_project
 # cargo 命令会自动初始化一个 git 仓库
 ```
 
-`new_project` 的结构如下:
+`new_project` 的结构如下：
 
 ```bash
 .
