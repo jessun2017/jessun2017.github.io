@@ -92,7 +92,7 @@ fn char_example() {
 
 1. 元组（tuple）
 
-Rust 中 `tuple` 的最大的长度是12，原因见：[https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type)
+Rust 中`tuple`的最大的长度是12，原因见：[https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type)
 
 ```rust
 fn tuple_example() {
