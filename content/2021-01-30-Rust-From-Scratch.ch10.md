@@ -1,5 +1,5 @@
 +++
-title = "Rust From Scratch chap.08 | Rust 的泛型与 trait"
+title = "Rust From Scratch chap10 | Rust 中的并发"
 draft = true
 [taxonomies]
 tags = ["Rust"]
