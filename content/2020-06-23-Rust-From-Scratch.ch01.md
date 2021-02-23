@@ -1,5 +1,5 @@
 +++
-title = "Rust From Scratch chap.01 | Rust 中的数据类型"
+title = "Rust From Scratch chap.01 | Rust 中的基础语法、数据类型与结构体"
 draft = false
 
 [taxonomies]
