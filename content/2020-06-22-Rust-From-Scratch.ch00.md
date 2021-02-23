@@ -1,5 +1,6 @@
 +++
 title = "Rust From Scratch chap.00 | Rust 介绍与安装"
+draft = false
 
 [taxonomies]
 tags = ["Rust"]
@@ -10,7 +11,7 @@ categories = ["Rust From Scratch"]
 
 ## 1.1 起源
 
-> Rust是由 Mozilla 主导开发的通用、编译型编程语言。设计准则为“安全、并发、实用”，支持函数式、并发式、过程式以及面向对象的编程风格。
+> Rust是由 Mozilla 主导开发的通用、编译型编程语言。设计准则为“安全、并发、实用”，支持函数式、并发式、过程式以及面向对象的编程风格
 > Rust语言原本是 Mozilla 员工 Graydon Hoare 的私人计划，而 Mozilla 于2009年开始赞助这个计划 ，并且在2010年首次揭露了它的存在。
 > 也在同一年，其编译器源代码开始由原本的OCaml语言转移到用Rust语言，进行bootstrapping工作，称做rustc，并于2011年实际完成。
 > 这个可自我编译的编译器在架构上采用了LLVM做为它的后端。
@@ -19,8 +20,7 @@ categories = ["Rust From Scratch"]
 
 - 官方网站：[https://www.rust-lang.org/](https://www.rust-lang.org/)
 
-- 各种文档：[https://prev.rust-lang.org/zh-CN/documentation.html](https://prev.rust-lang.org/zh-CN/documentation.html)
-    和 [https://rustwiki.org/zh-CN/](https://rustwiki.org/zh-CN/)
+- 各种文档：[https://prev.rust-lang.org/zh-CN/documentation.html](https://prev.rust-lang.org/zh-CN/documentation.html) 和 [https://rustwiki.org/zh-CN/](https://rustwiki.org/zh-CN/)
 
     - [<< Rust 程序设计语言 >>](https://kaisery.github.io/trpl-zh-cn/)
 
