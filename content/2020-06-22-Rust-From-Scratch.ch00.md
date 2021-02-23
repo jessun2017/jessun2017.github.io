@@ -7,6 +7,8 @@ tags = ["Rust"]
 categories = ["Rust From Scratch"]
 +++
 
+---
+
 # 1. Rust 简介
 
 ## 1.1 起源
@@ -86,8 +88,6 @@ $ rustup completions powershell | Out-String | Invoke-Expression
 Rust 由工具 rustup 安装和管理。Rust 有着以 6 星期为周期的 快速版本迭代机制，支持 大量平台，因而不同时期存在大量不同的 Rust 构建版本。
 rustup 用于管理不同平台下的 Rust 构建版本并使其互相兼容， 支持安装由 Beta 和 Nightly 频道发布的版本，并支持其他用于交叉编译的编译版本。
 
----
-
 ## 2.2 使用 Cargo 来管理你的项目
 
 rustup 是 rust 的版本管理器。Cargo 是 Rust 的构建系统和包管理器，比如构建代码、下载依赖库并编译这些库。
@@ -135,6 +135,8 @@ edition = "2018"
 - 发布构建：`cargo build --release`
 
 - 运行测试：`cargo test`
+
+---
 
 # 3. 开发工具
 
