@@ -1,15 +1,17 @@
 +++
 title = "Rust From Scratch chap.01 | Rust 中的数据类型"
+draft = false
 
 [taxonomies]
 tags = ["Rust"]
 categories = ["Rust From Scratch"]
 +++
 
+---
+
 # 1. 基础语法
 
-首先需要注意一点与其他语言（比如 Golang ）不同的是：
-**变量在声明时分为可变与不可变两种情况**。
+首先需要注意一点与其他语言（比如 Golang ）不同的是：**变量在声明时分为可变与不可变两种情况**。
 
 ```rust
 // 不可变变量
@@ -30,7 +32,7 @@ fn change_mut_x() {
 
 ## 1.1 基本数据类型 - 标量类型(scalar)
 
-1. 整型（Integer Types）
+### 1.1.1 整型（Integer Types）
 
 Rust 中的整数类型:
 
@@ -56,11 +58,11 @@ Rust 中的整数字面量:
 
 > 关于整型的细节：[https://docnrust-lang.org/book/ch03-02-data-types.html#integer-types](https://doc.rust-lang.org/book/ch03-02-data-types.html#integer-types)
 
-2. 浮点型（Floating-Point Types）
+### 1.1.2 浮点型（Floating-Point Types）
 
 f32 与 f64 的运行效率相差无几，但 f64 拥有更高的精度。Rust 默认使用 f64。
 
-3. 布尔类型（The Boolean Type）
+### 1.1.3 布尔类型（The Boolean Type）
 
 ```rust
 fn bool_example() {
@@ -72,7 +74,7 @@ fn bool_example() {
 }
 ```
 
-4. 字符（Character Type）
+### 1.1.4 字符（Character Type）
 
 Rust 中 `char` 类型占4字节，是一个 Unicode 标量值。
 
@@ -90,7 +92,7 @@ fn char_example() {
 
 ## 1.2 复合数据类型 - 复合类型(compound)
 
-1. 元组（tuple）
+### 1.2.1 元组（tuple）
 
 Rust 中`tuple`的最大的长度是12，原因见：[https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type)
 
@@ -116,7 +118,7 @@ fn tuple_example() {
 }
 ```
 
-2. 数组（array）
+### 1.2.2 数组（array）
 
 ```rust
 fn array_example() {
