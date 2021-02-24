@@ -1,5 +1,5 @@
 +++
-title = "Rust From Scratch chap.03 | Rust 中常用集合类型"
+title = "Rust From Scratch chap.02 | Rust 中常用集合类型"
 [taxonomies]
 tags = ["Rust"]
 categories = ["Rust From Scratch"]
