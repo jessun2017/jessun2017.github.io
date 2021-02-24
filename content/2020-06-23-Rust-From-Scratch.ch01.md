@@ -1,5 +1,5 @@
 +++
-title = "Rust From Scratch chap.01 | Rust 中的基础语法、数据类型与结构体"
+title = "Rust From Scratch chap.01 | Rust 中的数据类型与结构体"
 draft = false
 
 [taxonomies]
@@ -9,30 +9,9 @@ categories = ["Rust From Scratch"]
 
 ---
 
-# 1. 基础语法
+# 1 基本数据类型 - 标量类型(Scalar Type)
 
-首先需要注意一点与其他语言（比如 Golang ）不同的是：**变量在声明时分为可变与不可变两种情况**。
-
-```rust
-// 不可变变量
-fn print_x() {
-    let x = 5; 
-    println!("print: x is {}", x); 
-}
-
-// 可变变量
-fn change_mut_x() {
-    let mut x = 5;
-    println!("print: mut x is {}", x);
-    x = 6;
-    println!("print: mut x has been set {}", x);
-}
-```
->关于变量可变性的细节： [https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html)
-
-## 1.1 基本数据类型 - 标量类型(scalar)
-
-### 1.1.1 整型（Integer Types）
+## 1.1 整型（Integer Type）
 
 Rust 中的整数类型:
 
@@ -58,11 +37,11 @@ Rust 中的整数字面量:
 
 > 关于整型的细节：[https://docnrust-lang.org/book/ch03-02-data-types.html#integer-types](https://doc.rust-lang.org/book/ch03-02-data-types.html#integer-types)
 
-### 1.1.2 浮点型（Floating-Point Types）
+## 1.2 浮点型（Floating-Point Type）
 
 f32 与 f64 的运行效率相差无几，但 f64 拥有更高的精度。Rust 默认使用 f64。
 
-### 1.1.3 布尔类型（The Boolean Type）
+## 1.3 布尔类型（Boolean Type）
 
 ```rust
 fn bool_example() {
@@ -74,7 +53,7 @@ fn bool_example() {
 }
 ```
 
-### 1.1.4 字符（Character Type）
+## 1.4 字符（Character Type）
 
 Rust 中 `char` 类型占4字节，是一个 Unicode 标量值。
 
@@ -90,9 +69,9 @@ fn char_example() {
 }
 ```
 
-## 1.2 复合数据类型 - 复合类型(compound)
+# 2 复合数据类型 - 复合类型(Compound Type)
 
-### 1.2.1 元组（tuple）
+## 2.1 元组（Tuple Type）
 
 Rust 中`tuple`的最大的长度是12，原因见：[https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type](https://doc.rust-lang.org/book/ch03-02-data-types.html#the-tuple-type)
 
@@ -118,7 +97,7 @@ fn tuple_example() {
 }
 ```
 
-### 1.2.2 数组（array）
+## 2.2 数组（Array Type）
 
 ```rust
 fn array_example() {
@@ -141,7 +120,7 @@ fn analyze_slice(slice: &[i32]) {
 }
 ```
 
-## 1.3 结构体类型
+# 3 结构体类型（Struct）
 
 ```rust
 #[derive(Debug)]
@@ -172,7 +151,7 @@ fn struct_example() {
 }
 ```
 
-## 1.4 枚举类型
+# 4 枚举类型（Enum）
 
 ```rust
 fn enum_example() {
