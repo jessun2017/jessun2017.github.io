@@ -38,7 +38,7 @@ categories = ["Rust From Scratch"]
 
 rustup 是 Rust 官方的版本管理工具。应当作为安装 Rust 的首选。安装 Rust 使用来自官方的 `rustup` 工具，[官方推荐](https://www.rust-lang.org/tools/install)。
 `rustup` 命令文档请访问 [https://rust-lang.github.io/rustup/](https://rust-lang.github.io/rustup/)。中文版请访问 [https://github.com/chinanf-boy/rustup.rs-zh](https://github.com/chinanf-boy/rustup.rs-zh)。
-`rustc` 是 Rust 的编译器，`cargo` 是 Rust 的包管理工具。
+`rustc`是 Rust 的编译器，`cargo`是 Rust 的包管理工具。
 
 ```bash
 # MacOS
@@ -90,8 +90,8 @@ rustup 用于管理不同平台下的 Rust 构建版本并使其互相兼容， 
 
 ## 2.2 使用 Cargo 来管理你的项目
 
-rustup 是 rust 的版本管理器。Cargo 是 Rust 的构建系统和包管理器，比如构建代码、下载依赖库并编译这些库。
-一般安装 Rust 完成后，Cargo 已经安装完成。关于 Cargo 的详细介绍：[Cargo-Book](http://llever.com/cargo-book-zh/)
+`rustup`是 rust 的版本管理器。`cargo`是 Rust 的构建系统和包管理器，比如构建代码、下载依赖库并编译这些库。
+一般安装 Rust 完成后，`cargo`已经安装完成。关于`cargo`的详细介绍：[Cargo-Book](http://llever.com/cargo-book-zh/)
 
 ```bash
 # 创建新项目目录
@@ -149,6 +149,4 @@ edition = "2018"
 - 扩展 cargo 命令。
 
   - 安装 `cargo-edit` 来实现 `cargo add` 来编辑项目目录下的 `cargo.toml` 文件中的依赖项，仓库链接：https://github.com/killercup/cargo-edit 。
-
----
 
