@@ -3,7 +3,7 @@ title = "Rust From Scratch chap.00 | Rust 介绍与安装"
 draft = false
 
 [taxonomies]
-tags = ["Rust"]
+tags = ["rust"]
 categories = ["Rust From Scratch"]
 +++
 

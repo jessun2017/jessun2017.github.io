@@ -2,7 +2,7 @@
 title = "Rust From Scratch chap.04 | Rust 中的所有权规则与生命周期"
 draft = true
 [taxonomies]
-tags = ["Rust"]
+tags = ["rust"]
 categories = ["Rust From Scratch"]
 +++
 

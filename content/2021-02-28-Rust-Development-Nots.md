@@ -2,7 +2,7 @@
 title = "Rust 开发手记 ch.01"
 draft = true
 [taxonomies]
-tags = ["Rust"]
+tags = ["rust"]
 categories = [""]
 +++
 

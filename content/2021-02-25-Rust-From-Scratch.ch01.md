@@ -3,7 +3,7 @@ title = "Rust From Scratch chap.01 | Rust 中的数据类型、结构体和常�
 draft = false
 
 [taxonomies]
-tags = ["Rust"]
+tags = ["rust"]
 categories = ["Rust From Scratch"]
 +++
 

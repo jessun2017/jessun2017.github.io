@@ -2,7 +2,7 @@
 title = "Rust From Scratch chap.07 | Rust 中的指针与智能指针"
 draft = true
 [taxonomies]
-tags = ["Rust"]
+tags = ["rust"]
 categories = ["Rust From Scratch"]
 +++
 
