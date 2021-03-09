@@ -138,7 +138,7 @@ edition = "2018"
 
 ---
 
-# 3. 开发工具
+# 3. 开发工具以及其他小知识点
 
 - [neovim](https://github.com/neovim/neovim)
 
@@ -149,4 +149,10 @@ edition = "2018"
 - 扩展 cargo 命令。
 
   - 安装 `cargo-edit` 来实现 `cargo add` 来编辑项目目录下的 `cargo.toml` 文件中的依赖项，仓库链接：https://github.com/killercup/cargo-edit 。
+
+- `rustup doc` 可以打开离线的Rust文档，包含如下内容。
+  - << The Rust Programming Language >>
+  - << Rust By Example >>
+  - The Standard Library
+  ... 等其他众多内容
 
