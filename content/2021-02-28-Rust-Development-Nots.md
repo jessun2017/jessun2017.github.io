@@ -1,5 +1,5 @@
 +++
-title = "Rust 开发手记 ch.01"
+title = "Rust 开发手记"
 draft = true
 [taxonomies]
 tags = ["rust"]
@@ -7,7 +7,6 @@ categories = [""]
 +++
 
 # Makefile 的使用
-
 
 在开发 rust 程序的过程中，经常需要使用`cargo run`或者`cargo test`来跑测试。
 目前使用的`Makefile`文件内容：
