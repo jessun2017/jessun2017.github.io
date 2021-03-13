@@ -1,6 +1,6 @@
 +++
 title = "Rust From Scratch chap.00 | Rust 介绍与安装"
-draft = false
+draft = true
 
 [taxonomies]
 tags = ["rust"]
