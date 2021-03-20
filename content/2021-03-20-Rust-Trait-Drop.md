@@ -37,5 +37,9 @@ fn drop_trait() {
     let cs = CustomStruct {
         data: String::from("============this is data==========="),
     };
+
+    // 如果需要手动提前释放
+    drop(cs)
+    // -- snip --
 }
 ```
