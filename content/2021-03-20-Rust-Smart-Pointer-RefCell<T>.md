@@ -2,7 +2,6 @@
 title = "Rust Trait 介绍：RefCell<T>与内部可变性模式"
 draft = false
 
-
 [taxonomies]
 tags = [""]
 categories = [""]

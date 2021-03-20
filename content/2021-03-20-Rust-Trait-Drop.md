@@ -2,7 +2,6 @@
 title = "Rust Trait 介绍: Drop"
 draft = false
 
-
 [taxonomies]
 tags = ["rust"]
 categories = [""]

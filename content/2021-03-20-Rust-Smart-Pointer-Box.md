@@ -1,6 +1,6 @@
 +++
 title = "Rust 智能指针 Box"
-draft = true
+draft = false
 
 [taxonomies]
 tags = ["rust"]
