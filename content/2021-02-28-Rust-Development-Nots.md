@@ -1,5 +1,5 @@
 +++
-title = "Rust 开发手记"
+title = "Rust 开发手记之 Makefile"
 draft = true
 [taxonomies]
 tags = ["rust"]
