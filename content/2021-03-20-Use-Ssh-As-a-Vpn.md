@@ -1,6 +1,6 @@
 +++
 title = "使用ssh服务和公网服务器搭建VPN"
-draft = true
+draft = false
 
 
 [taxonomies]
