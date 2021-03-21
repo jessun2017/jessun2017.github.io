@@ -1,6 +1,7 @@
 +++
 title = "Rust 开发手记之 Makefile"
 draft = false
+
 [taxonomies]
 tags = ["rust"]
 categories = [""]
