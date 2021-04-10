@@ -1,5 +1,5 @@
 +++
-title = "Rust Trait 介绍: Rc<T> 引用计数"
+title = "Rust 智能指针介绍: Rc<T> 引用计数"
 draft = false
 
 [taxonomies]

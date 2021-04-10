@@ -1,5 +1,5 @@
 +++
-title = "Rust Trait 介绍：Weak<T>"
+title = "Rust 智能指针介绍：Weak<T>"
 draft = false
 
 [taxonomies]

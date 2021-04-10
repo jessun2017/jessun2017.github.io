@@ -1,5 +1,5 @@
 +++
-title = "Rust Trait 介绍：Arc<T>"
+title = "Rust 智能指针介绍：Arc<T>"
 draft = true
 
 [taxonomies]
