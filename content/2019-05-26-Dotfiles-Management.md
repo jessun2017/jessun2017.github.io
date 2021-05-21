@@ -1,5 +1,5 @@
 +++
-title = "Linux / Mac OS dotfiles 文件备份还原最佳时间"
+title = "Linux / Mac OS dotfiles 文件备份还原最佳实践"
 
 [taxonomies]
 tags = ["dotfiles", "linux", "macos"]
