@@ -1,6 +1,7 @@
 +++
-title = "Rust From Scratch chap.04 | Rust 中的所有权（Ownership）与生命周期（Lifetimes）"
-draft = false
+title = "Rust From Scratch | Rust 中的所有权（Ownership）与生命周期（Lifetimes）"
+draft = true
+
 [taxonomies]
 tags = ["rust"]
 categories = ["Rust From Scratch"]
@@ -59,7 +60,7 @@ println!("s1 = {}, s2 = {}", s1, s2);
 ```
 
 像整型这种在编译时已知大小的类型，会被整个存储在栈上，没有深拷贝和浅拷贝的区别。
-像整型这种在编译时已知大小的类型，都会拥有`Copy`的`trait`。如果是一个拥有`Copy` `trait`的类型，不会发生所有权移动。
+像整型这种在编译时已知大小的类型，都会拥有`Copy`的`trait`。如果是一个拥有`Copy`的类型，不会发生所有权移动。
 
 拥有`Copy` `trait`的类型：
 1. 所有整数类型。
@@ -82,6 +83,7 @@ fn calculate_length(s: &String) -> usize {
     s.len()
 }
 ```
+
 > 注意：与使用 & 引用相反的操作是 解引用（dereferencing），它使用解引用运算符，*。
 
 可变引用
@@ -127,5 +129,5 @@ let a = [1, 2, 3, 4, 5];
 let slice = &a[1..3];
 ```
 
-## 生命周期（Lifetimes）
+## 生命周期（Lifetimes）（TODO）
 
