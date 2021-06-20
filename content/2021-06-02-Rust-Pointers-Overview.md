@@ -1,6 +1,6 @@
 +++
 title = "Rust 指针综述（DOING）"
-draft = false
+draft = true
 
 [taxonomies]
 tags = ["rust"]
@@ -101,6 +101,8 @@ fn smart_pointer_rc() {
     println!("count after c goes out of scope = {}", Rc::strong_count(&a));
 }
 ```
+
+`Rc::clone()`不会执行数据的深度拷贝，只会增加引用计数。
 
 ## 智能指针 - Cell<T>，Ref<Cell>
 
