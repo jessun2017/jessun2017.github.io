@@ -117,7 +117,22 @@ Rust 语言的版本包括以下三个相互正交的概念：
 
 5. 词条（Tokens）
 
-TODO
+包含：
+
+- 语言项（Item）
+- 块（Block）
+- 语句（Stmt）
+- 表达式（Expr）
+- 模式（Pattern）
+- 关键字（Keyword）
+- 标识符（Ident）
+- 字面量（Literal）
+- 生命周期（Lifetime）
+- 可见性（Vis）
+- 标点符号（Punctuation）
+- 分隔符（delimiter）
+- 词条树（Token Tree）
+- 属性（Attribute）
 
 6. 路径（Path）
 
