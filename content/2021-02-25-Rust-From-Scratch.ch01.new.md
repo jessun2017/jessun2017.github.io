@@ -9,7 +9,6 @@ categories = ["Rust From Scratch"]
 
 ---
 
-
 # Rust 中的版本（Version）
 
 Rust 语言的版本包括以下三个相互正交的概念：
