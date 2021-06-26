@@ -9,7 +9,7 @@ categories = ["Rust From Scratch"]
 
 ---
 
-# Rust 中的版本（Version）
+# 1. Rust 中的版本（Version）
 
 Rust 语言的版本包括以下三个相互正交的概念：
 
@@ -22,7 +22,7 @@ Rust 语言的版本包括以下三个相互正交的概念：
 
 - Edition 版次：2015 Edition, 2018 Edition, 2021 Edition
 
-# Rust 的词法结构（Lexical）
+# 2. Rust 的词法结构（Lexical）
 
 ## Rust 的编译过程
 
