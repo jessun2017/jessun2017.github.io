@@ -1,6 +1,6 @@
 +++
 title = "Rust From Scratch chap.01 | Rust 中的数据类型、结构体和常用集合类型"
-draft = true
+draft = false
 
 [taxonomies]
 tags = ["rust"]
