@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - 开发实践: Golang 在生成大文件MD5超时控制</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/golang-md5-test/#wen-ti-bei-jing" class="toc-link">问题背景</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/golang-md5-test/#dai-ma-ce-shi" class="toc-link">代码测试</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/golang-md5-test/#jie-jue-fang-an" class="toc-link">解决方案</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;golang-md5-test&#x2F;">开发实践: Golang 在生成大文件MD5超时控制</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2021-03-13</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <h2 id="wen-ti-bei-jing">问题背景</h2>
+<p>工作中遇到一个问题：在当前项目的程序运行中，需要对MySQL实例的备份集文件生成MD5信息。
+在少数情况下备份集文件可能会非常大，MD5信息生成会非常慢。
+从需求上看，希望能对该过程进行一个超时控制：当超过30分钟后，不再生成MD5信息，直接向上返回结果。</p>
+<p>样例代码</p>
+<pre style="background-color:#002b36;">
+<code class="language-go" data-lang="go"><span style="color:#268bd2;">func </span><span style="color:#b58900;">GetFileMd5</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">filePath </span><span style="color:#859900;">string</span><span style="color:#657b83;">) (</span><span style="color:#859900;">string</span><span style="color:#839496;">, </span><span style="color:#859900;">error</span><span style="color:#657b83;">) {
+	</span><span style="color:#268bd2;">file</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">os</span><span style="color:#839496;">.</span><span style="color:#b58900;">Open</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">filePath</span><span style="color:#657b83;">)
+	</span><span style="color:#859900;">if </span><span style="color:#b58900;">nil </span><span style="color:#859900;">!= </span><span style="color:#268bd2;">err </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">return </span><span style="color:#839496;">&quot;&quot;, </span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Errorf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">open </span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;"> error: </span><span style="color:#cb4b16;">%v</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">filePath</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#859900;">defer </span><span style="color:#268bd2;">file</span><span style="color:#839496;">.</span><span style="color:#b58900;">Close</span><span style="color:#657b83;">()
+	</span><span style="color:#268bd2;">hash </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">md5</span><span style="color:#839496;">.</span><span style="color:#b58900;">New</span><span style="color:#657b83;">()
+	</span><span style="color:#859900;">if </span><span style="color:#d33682;">_</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#b58900;">Copy</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">hash</span><span style="color:#839496;">, </span><span style="color:#268bd2;">file</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#268bd2;">err </span><span style="color:#859900;">!= </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">return </span><span style="color:#839496;">&quot;&quot;, </span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Errorf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">copy md5 hash error: </span><span style="color:#cb4b16;">%v</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">err</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#859900;">return </span><span style="color:#268bd2;">hex</span><span style="color:#839496;">.</span><span style="color:#b58900;">EncodeToString</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">hash</span><span style="color:#839496;">.</span><span style="color:#b58900;">Sum</span><span style="color:#657b83;">(</span><span style="color:#b58900;">nil</span><span style="color:#657b83;">))</span><span style="color:#839496;">, </span><span style="color:#b58900;">nil
+</span><span style="color:#657b83;">}
+
+</span></code></pre><h2 id="dai-ma-ce-shi">代码测试</h2>
+<p>首先，先对代码进行简单测试。了解到底是哪个过程导致了协程被夯住。测试代码如下：</p>
+<pre style="background-color:#002b36;">
+<code class="language-go" data-lang="go"><span style="color:#268bd2;">func </span><span style="color:#b58900;">main</span><span style="color:#657b83;">() {
+
+	</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Printf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#dc322f;">\n</span><span style="color:#2aa198;">[</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]begin openfile</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">())
+	</span><span style="color:#268bd2;">file</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">os</span><span style="color:#839496;">.</span><span style="color:#b58900;">Open</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">./test.img</span><span style="color:#839496;">&quot;</span><span style="color:#657b83;">)
+	</span><span style="color:#859900;">if </span><span style="color:#268bd2;">err </span><span style="color:#859900;">!= </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">panic</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">err</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#268bd2;">hash </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">md5</span><span style="color:#839496;">.</span><span style="color:#b58900;">New</span><span style="color:#657b83;">()
+	</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Printf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#dc322f;">\n</span><span style="color:#2aa198;">[</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]begin io.Copy()</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">())
+	</span><span style="color:#859900;">if </span><span style="color:#d33682;">_</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#b58900;">Copy</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">hash</span><span style="color:#839496;">, </span><span style="color:#268bd2;">file</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#268bd2;">err </span><span style="color:#859900;">!= </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">panic</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">err</span><span style="color:#657b83;">)
+	}
+
+	</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Printf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#dc322f;">\n</span><span style="color:#2aa198;">[</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]begin hash.Sum</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">())
+	</span><span style="color:#268bd2;">b </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">hash</span><span style="color:#839496;">.</span><span style="color:#b58900;">Sum</span><span style="color:#657b83;">(</span><span style="color:#b58900;">nil</span><span style="color:#657b83;">)
+
+	</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Printf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#dc322f;">\n</span><span style="color:#2aa198;">[</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]begin hex.EncodeToString</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">())
+
+	</span><span style="color:#268bd2;">md5Info </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">hex</span><span style="color:#839496;">.</span><span style="color:#b58900;">EncodeToString</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">b</span><span style="color:#657b83;">)
+	</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Printf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#dc322f;">\n</span><span style="color:#2aa198;">[</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]md5Info: [</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">]</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">()</span><span style="color:#839496;">, </span><span style="color:#268bd2;">md5Info</span><span style="color:#657b83;">)
+
+}
+</span></code></pre>
+<p>测试流程：</p>
+<ol start="0">
+<li>测试环境：华为云鲲鹏ARM服务器，64G内存，32核CPU。</li>
+<li>先使用生成300G文件的。<code>fallocate  -l 300G test.img</code></li>
+<li>使用上述代码来获得结果。</li>
+<li>结果如下：
+<img src="https://cdn.jsdelivr.net/gh/zlipsun/picstore/imgmd5.png" alt="测试结果" /></li>
+</ol>
+<h2 id="jie-jue-fang-an">解决方案</h2>
+<p>从上述测试结果可以看出主要的耗时过程为<code>io.Copy</code>。在查看<code>io.Copy</code>的源码后，发现是调用内部的<code>io.copyBuffer</code>方法。
+正好方法内是使用了一个<code>for</code>循环来多次读取<code>buffer</code>。所以可以在内部加入一个<code>select</code>语句来进行超时判断。</p>
+<p>改写方案</p>
+<pre style="background-color:#002b36;">
+<code class="language-go" data-lang="go"><span style="color:#586e75;">// Enhancement of io.Copy in golang std lib
+</span><span style="color:#268bd2;">func </span><span style="color:#b58900;">CopyWithTimeout</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">dst io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">Writer</span><span style="color:#839496;">, </span><span style="color:#268bd2;">src io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">Reader</span><span style="color:#839496;">, </span><span style="color:#268bd2;">timeoutSeconds </span><span style="color:#859900;">int</span><span style="color:#657b83;">) (</span><span style="color:#268bd2;">written </span><span style="color:#859900;">int64</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#859900;">error</span><span style="color:#657b83;">) {
+	</span><span style="color:#859900;">return </span><span style="color:#b58900;">copyBufferWithTimeout</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">dst</span><span style="color:#839496;">, </span><span style="color:#268bd2;">src</span><span style="color:#839496;">, </span><span style="color:#b58900;">nil</span><span style="color:#839496;">, </span><span style="color:#268bd2;">timeoutSeconds</span><span style="color:#657b83;">)
+}
+
+</span><span style="color:#586e75;">// Enhancement of io.copyBuffer in golang std lib
+</span><span style="color:#268bd2;">func </span><span style="color:#b58900;">copyBufferWithTimeout</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">dst io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">Writer</span><span style="color:#839496;">, </span><span style="color:#268bd2;">src io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">Reader</span><span style="color:#839496;">, </span><span style="color:#268bd2;">buf []</span><span style="color:#859900;">byte</span><span style="color:#839496;">, </span><span style="color:#268bd2;">timeoutSeconds </span><span style="color:#859900;">int</span><span style="color:#657b83;">) (</span><span style="color:#268bd2;">written </span><span style="color:#859900;">int64</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err </span><span style="color:#859900;">error</span><span style="color:#657b83;">) {
+	</span><span style="color:#586e75;">// If the reader has a WriteTo method, use it to do the copy.
+	// Avoids an allocation and a copy.
+	</span><span style="color:#859900;">if </span><span style="color:#268bd2;">wt</span><span style="color:#839496;">, </span><span style="color:#268bd2;">ok </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">src</span><span style="color:#839496;">.</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">WriterTo</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#268bd2;">ok </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">return </span><span style="color:#268bd2;">wt</span><span style="color:#839496;">.</span><span style="color:#b58900;">WriteTo</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">dst</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#586e75;">// Similarly, if the writer has a ReadFrom method, use it to do the copy.
+	</span><span style="color:#859900;">if </span><span style="color:#268bd2;">rt</span><span style="color:#839496;">, </span><span style="color:#268bd2;">ok </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">dst</span><span style="color:#839496;">.</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">ReaderFrom</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#268bd2;">ok </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">return </span><span style="color:#268bd2;">rt</span><span style="color:#839496;">.</span><span style="color:#b58900;">ReadFrom</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">src</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#859900;">if </span><span style="color:#268bd2;">buf </span><span style="color:#859900;">== </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+		</span><span style="color:#268bd2;">size </span><span style="color:#657b83;">:= </span><span style="color:#6c71c4;">32 </span><span style="color:#859900;">* </span><span style="color:#6c71c4;">1024
+		</span><span style="color:#859900;">if </span><span style="color:#268bd2;">l</span><span style="color:#839496;">, </span><span style="color:#268bd2;">ok </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">src</span><span style="color:#839496;">.</span><span style="color:#657b83;">(</span><span style="color:#859900;">*</span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">LimitedReader</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#268bd2;">ok </span><span style="color:#859900;">&amp;&amp; int64</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">size</span><span style="color:#657b83;">) </span><span style="color:#859900;">&gt; </span><span style="color:#268bd2;">l</span><span style="color:#839496;">.</span><span style="color:#268bd2;">N </span><span style="color:#657b83;">{
+			</span><span style="color:#859900;">if </span><span style="color:#268bd2;">l</span><span style="color:#839496;">.</span><span style="color:#268bd2;">N </span><span style="color:#859900;">&lt; </span><span style="color:#6c71c4;">1 </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">size </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">1
+			</span><span style="color:#657b83;">} </span><span style="color:#859900;">else </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">size </span><span style="color:#657b83;">= </span><span style="color:#859900;">int</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">l</span><span style="color:#839496;">.</span><span style="color:#268bd2;">N</span><span style="color:#657b83;">)
+			}
+		}
+		</span><span style="color:#268bd2;">buf </span><span style="color:#657b83;">= </span><span style="color:#859900;">make</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">[]</span><span style="color:#859900;">byte</span><span style="color:#839496;">, </span><span style="color:#268bd2;">size</span><span style="color:#657b83;">)
+	}
+	</span><span style="color:#268bd2;">begin </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">()
+	</span><span style="color:#268bd2;">timeoutChan </span><span style="color:#657b83;">:= </span><span style="color:#859900;">make</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">chan struct</span><span style="color:#657b83;">{}</span><span style="color:#839496;">, </span><span style="color:#6c71c4;">1</span><span style="color:#657b83;">)
+	</span><span style="color:#268bd2;">endFromTimeout </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">begin</span><span style="color:#839496;">.</span><span style="color:#b58900;">Add</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#268bd2;">Second </span><span style="color:#859900;">* </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Duration</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">timeoutSeconds</span><span style="color:#657b83;">))
+	</span><span style="color:#859900;">for </span><span style="color:#657b83;">{
+		</span><span style="color:#268bd2;">nr</span><span style="color:#839496;">, </span><span style="color:#268bd2;">er </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">src</span><span style="color:#839496;">.</span><span style="color:#b58900;">Read</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">buf</span><span style="color:#657b83;">)
+		</span><span style="color:#859900;">if </span><span style="color:#268bd2;">nr </span><span style="color:#859900;">&gt; </span><span style="color:#6c71c4;">0 </span><span style="color:#657b83;">{
+			</span><span style="color:#268bd2;">nw</span><span style="color:#839496;">, </span><span style="color:#268bd2;">ew </span><span style="color:#657b83;">:= </span><span style="color:#268bd2;">dst</span><span style="color:#839496;">.</span><span style="color:#b58900;">Write</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">buf[</span><span style="color:#6c71c4;">0</span><span style="color:#839496;">:</span><span style="color:#268bd2;">nr]</span><span style="color:#657b83;">)
+			</span><span style="color:#859900;">if </span><span style="color:#268bd2;">nw </span><span style="color:#859900;">&lt; </span><span style="color:#6c71c4;">0 </span><span style="color:#859900;">|| </span><span style="color:#268bd2;">nr </span><span style="color:#859900;">&lt; </span><span style="color:#268bd2;">nw </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">nw </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">0
+				</span><span style="color:#859900;">if </span><span style="color:#268bd2;">ew </span><span style="color:#859900;">== </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+					</span><span style="color:#268bd2;">ew </span><span style="color:#657b83;">= </span><span style="color:#268bd2;">errors</span><span style="color:#839496;">.</span><span style="color:#b58900;">New</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">invalid write result</span><span style="color:#839496;">&quot;</span><span style="color:#657b83;">)
+				}
+			}
+			</span><span style="color:#268bd2;">written </span><span style="color:#657b83;">+= </span><span style="color:#859900;">int64</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">nw</span><span style="color:#657b83;">)
+			</span><span style="color:#859900;">if </span><span style="color:#268bd2;">ew </span><span style="color:#859900;">!= </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">err </span><span style="color:#657b83;">= </span><span style="color:#268bd2;">ew
+				</span><span style="color:#859900;">break
+			</span><span style="color:#657b83;">}
+			</span><span style="color:#859900;">if </span><span style="color:#268bd2;">nr </span><span style="color:#859900;">!= </span><span style="color:#268bd2;">nw </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">err </span><span style="color:#657b83;">= </span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">ErrShortWrite
+				</span><span style="color:#859900;">break
+			</span><span style="color:#657b83;">}
+		}
+		</span><span style="color:#859900;">if </span><span style="color:#268bd2;">er </span><span style="color:#859900;">!= </span><span style="color:#b58900;">nil </span><span style="color:#657b83;">{
+			</span><span style="color:#859900;">if </span><span style="color:#268bd2;">er </span><span style="color:#859900;">!= </span><span style="color:#268bd2;">io</span><span style="color:#839496;">.</span><span style="color:#268bd2;">EOF </span><span style="color:#657b83;">{
+				</span><span style="color:#268bd2;">err </span><span style="color:#657b83;">= </span><span style="color:#268bd2;">er
+			</span><span style="color:#657b83;">}
+			</span><span style="color:#859900;">break
+		</span><span style="color:#657b83;">}
+
+		</span><span style="color:#859900;">if </span><span style="color:#268bd2;">time</span><span style="color:#839496;">.</span><span style="color:#b58900;">Now</span><span style="color:#657b83;">()</span><span style="color:#839496;">.</span><span style="color:#b58900;">After</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">endFromTimeout</span><span style="color:#657b83;">) {
+			</span><span style="color:#268bd2;">timeoutChan </span><span style="color:#859900;">&lt;- </span><span style="color:#268bd2;">struct</span><span style="color:#657b83;">{}{}
+		}
+
+		</span><span style="color:#859900;">select </span><span style="color:#657b83;">{
+		</span><span style="color:#859900;">case &lt;-</span><span style="color:#268bd2;">timeoutChan</span><span style="color:#839496;">:
+			</span><span style="color:#268bd2;">err </span><span style="color:#657b83;">= </span><span style="color:#b58900;">ErrTimeout</span><span style="color:#657b83;">(</span><span style="color:#268bd2;">fmt</span><span style="color:#839496;">.</span><span style="color:#b58900;">Sprintf</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">copy buffer time out, limit [</span><span style="color:#cb4b16;">%v</span><span style="color:#2aa198;">] seconds</span><span style="color:#839496;">&quot;, </span><span style="color:#268bd2;">timeoutSeconds</span><span style="color:#657b83;">))
+			</span><span style="color:#859900;">return </span><span style="color:#6c71c4;">0</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err
+		</span><span style="color:#859900;">default</span><span style="color:#839496;">:
+		</span><span style="color:#657b83;">}
+	}
+	</span><span style="color:#859900;">return </span><span style="color:#268bd2;">written</span><span style="color:#839496;">, </span><span style="color:#268bd2;">err
+</span><span style="color:#657b83;">}
+</span></code></pre>
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;golang&#x2F;">#golang</a>
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;md5&#x2F;">#md5</a>
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;kai-fa-shi-jian&#x2F;">#开发实践</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-development-nots&#x2F;">‹ Rust 开发手记之 Makefile</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;use-ssh-as-a-vpn&#x2F;">使用ssh服务和公网服务器搭建VPN ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

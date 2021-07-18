@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - Linux &#x2F; Mac OS dotfiles 文件备份还原最佳实践</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/dotfiles-management/#github-shang-de-dotfiles-guan-li" class="toc-link">Github 上的 Dotfiles 管理</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/dotfiles-management/#shi-yong-git-repo-fang-shi-guan-li-dotfiles" class="toc-link">使用 Git Repo 方式管理 dotfiles</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/dotfiles-management/#kai-shi" class="toc-link">开始</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/dotfiles-management/#zai-xin-xi-tong-shang-xia-zai-he-shi-yong-she-zhi" class="toc-link">在新系统上下载和使用设置</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;dotfiles-management&#x2F;">Linux &#x2F; Mac OS dotfiles 文件备份还原最佳实践</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2019-05-26</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <h2 id="github-shang-de-dotfiles-guan-li">Github 上的 Dotfiles 管理</h2>
+<p>在使用 Linux 和 Mac 系统时候， 常常需要同步 dotfiles。比如 fish 的配置文件在 ~/.config/fish/config.fish，vim 的配置文件在 ~/.vim/vimrc 等等。Github 有个<a href="https://dotfiles.github.io"> 非官方指南 </a>。</p>
+<h2 id="shi-yong-git-repo-fang-shi-guan-li-dotfiles">使用 Git Repo 方式管理 dotfiles</h2>
+<blockquote>
+<p>参考: <a href="https://www.atlassian.com/git/tutorials/dotfiles">The best way to store your dotfiles: A bare Git repository</a></p>
+</blockquote>
+<h3 id="kai-shi">开始</h3>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">git init --bare $HOME/.cfg
+alias config=&#39;/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME&#39;
+config config --local status.showUntrackedFiles no
+echo &quot;alias config=&#39;/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME&#39;&quot; &gt;&gt; $HOME/.bashrc
+</span></code></pre>
+<ul>
+<li>
+<p>第一行创建一个文件夹 <code>~/.cfg</code>，一个 <a href="http://www.saintsjd.com/2011/01/what-is-a-bare-git-repository/"> Git bare repository </a>，用来管理我们的 dotfiles。</p>
+</li>
+<li>
+<p>创建一个 alias 名为 config 的命令，用来进行操作。</p>
+</li>
+<li>
+<p>隐藏其他我们没有明确是否跟踪的文件。这样，当使用 <code>config status</code> 命令的时候，不会显示其他无关的文件。</p>
+</li>
+<li>
+<p>将这个别名命令写入 .bashrc 文件。</p>
+</li>
+</ul>
+<p>执行完以上设置之后，$HOME 文件夹中的任何文件都可以用命令进行版本控制。例如：</p>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">config status
+config add ~/.vim/vimrc
+config commit -m &#39;Add vimrc&#39;
+config add ~/.bashrc
+config commit -m &#39;Add bashrc&#39;
+</span></code></pre>
+<p>这时候，就可以把这个 git 仓库 push 到 github 或者其他远程仓库上。</p>
+<h2 id="zai-xin-xi-tong-shang-xia-zai-he-shi-yong-she-zhi">在新系统上下载和使用设置</h2>
+<ol>
+<li>首先依旧新建 alias，忽略 .cfg 文件夹。</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">alias config=&#39;/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME&#39;
+echo &quot;.cfg&quot; &gt;&gt; .gitignore
+</span></code></pre>
+<ol start="2">
+<li>下载备份的配置</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">git clone --bare &lt;git-repo-url&gt; $HOME/.cfg
+</span></code></pre>
+<ol start="3">
+<li>检出分支内容</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">config checkout
+</span></code></pre>
+<p>上面的步骤可能会失败，并显示类似的如下消息：</p>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">error: The following untracked working tree files would be overwritten by checkout:
+    .bashrc
+    .gitignore
+Please move or remove them before you can switch branches.
+Aborting
+</span></code></pre>
+<ol start="4">
+<li>将这些已经存在的文件移动到备份文件夹：</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">mkdir -p .config-backup &amp;&amp; \
+config checkout 2&gt;&amp;1 | egrep &quot;\s+\.&quot; | awk {&#39;print $1&#39;} | \
+xargs -I{} mv {} .config-backup/{}
+</span></code></pre>
+<p>再次检出</p>
+<pre style="background-color:#002b36;">
+<code class="language-shell" data-lang="shell"><span style="color:#839496;">config checkout
+</span></code></pre>
+<p>这样就可以一直更新并 push 自己的配置仓库了。</p>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;dotfiles&#x2F;">#dotfiles</a>
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;linux&#x2F;">#linux</a>
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;macos&#x2F;">#macos</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;practical-vim-reading-note&#x2F;">‹ 《Vim 实用技巧》笔记</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch00&#x2F;">Rust From Scratch chap.00 | Rust 介绍与安装 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

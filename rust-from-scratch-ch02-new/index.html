@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - Rust From Scratch chap.02 | Rust 中的表达式（expressions）与语句（statements）</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#1-rust-zhong-yu-ju-statements-de-si-chong-lei-xing" class="toc-link">1.Rust 中语句（statements）的四种类型</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#san-ge-guan-jian-yuan-su" class="toc-link">三个关键元素</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#qiu-zhi-gui-ze" class="toc-link">求值规则</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#rust-bian-yi-qi-ji-suan" class="toc-link">Rust 编译期计算</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#rust-chang-liang-fan-xing-const-generics" class="toc-link">Rust 常量泛型（const generics）</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#2-rust-zhong-biao-da-shi-expressions-de-fen-lei" class="toc-link">2. Rust 中表达式（expressions）的分类</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch02-new/#wei-zhi-biao-da-shi" class="toc-link">位置表达式</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch02-new&#x2F;">Rust From Scratch chap.02 | Rust 中的表达式（expressions）与语句（statements）</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2021-02-25</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <h1 id="1-rust-zhong-yu-ju-statements-de-si-chong-lei-xing">1.Rust 中语句（statements）的四种类型</h1>
+<ul>
+<li>
+<p>声明语句</p>
+</li>
+<li>
+<p>流程控制语句</p>
+</li>
+<li>
+<p>表达式语句</p>
+</li>
+<li>
+<p>宏语句</p>
+</li>
+</ul>
+<h2 id="san-ge-guan-jian-yuan-su">三个关键元素</h2>
+<ul>
+<li>
+<p>属性，类似于 #![...]</p>
+</li>
+<li>
+<p>分号，行分隔符</p>
+</li>
+<li>
+<p>花括号，块分隔符</p>
+</li>
+</ul>
+<h2 id="qiu-zhi-gui-ze">求值规则</h2>
+<ul>
+<li>
+<p>分号表达式返回值是永远为自身的单元（unit）类型。</p>
+</li>
+<li>
+<p>分号表达式只有在块表达式最后一行才会进行求值，其他时候只作为『连接符』存在。</p>
+</li>
+<li>
+<p>块表达式只对其最后一行表达式进行求值。</p>
+</li>
+</ul>
+<h2 id="rust-bian-yi-qi-ji-suan">Rust 编译期计算</h2>
+<h3 id="shi-yao-shi-bian-yi-qi-ji-suan">什么是编译期计算</h3>
+<p>即编译期函数计算求值。</p>
+<p>Rust 编译器计算支持：常量函数和常量泛型</p>
+<p>Rust 支持两种方式：</p>
+<ul>
+<li>
+<p>过程宏 + Build脚本(build.rs)</p>
+</li>
+<li>
+<p>CTFE (Compile-Time function Execution)</p>
+<ul>
+<li>常量函数（const fn），可支持递归。</li>
+<li>常量泛型（const generic）</li>
+</ul>
+</li>
+</ul>
+<h2 id="rust-chang-liang-fan-xing-const-generics">Rust 常量泛型（const generics）</h2>
+<h3 id="chang-liang-shang-xia-wen-const-context-bao-han">常量上下文（const context）包含：</h3>
+<ol>
+<li>
+<p>常量值初始化位置</p>
+</li>
+<li>
+<p>静态数组的长度表达式，[T; N]</p>
+</li>
+<li>
+<p>重复的长度表达式，类似于：[0; 10]</p>
+</li>
+<li>
+<p>静态变量、枚举判别式的初始化位置。</p>
+</li>
+</ol>
+<h3 id="chang-liang-chuan-bo-const-propagation">常量传播（const propagation）</h3>
+<p>常量传播和编译期计算是不同的：</p>
+<ul>
+<li>
+<p>常量传播是编译器的一种优化。</p>
+</li>
+<li>
+<p>常量传播并不能改变程序的任何行为，并且对开发者是隐藏的。</p>
+</li>
+<li>
+<p>编译期计算则是指编译时执行的代码，必须要知道其结果，才能继续编译。</p>
+</li>
+</ul>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">const</span><span style="color:#839496;"> X: </span><span style="color:#268bd2;">u32 </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">3 </span><span style="color:#657b83;">+ </span><span style="color:#6c71c4;">4</span><span style="color:#839496;">; </span><span style="color:#586e75;">// CTFE 
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> x: uew </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">4 </span><span style="color:#657b83;">+ </span><span style="color:#6c71c4;">3</span><span style="color:#839496;">; </span><span style="color:#586e75;">// 不是 CTFE，但可能会被常量传播优化，因为它不是常量上下文。
+</span></code></pre><h3 id="chang-liang-an-quan-const-safe">常量安全（const safe）</h3>
+<ul>
+<li>
+<p>Rust 大部分表达式都可用作常量表达式。</p>
+</li>
+<li>
+<p>并不是所有常量表达式都可以用在常量上下文。</p>
+</li>
+<li>
+<p>编译期求值必须得到一个确定性的结果。</p>
+</li>
+</ul>
+<h3 id="chang-liang-shang-xia-wen-ke-jie-shou-de-chang-liang-biao-da-shi">常量上下文可接受的常量表达式</h3>
+<ul>
+<li>
+<p>const fn 函数</p>
+</li>
+<li>
+<p>元组结构体</p>
+</li>
+<li>
+<p>元组的值</p>
+</li>
+</ul>
+<h3 id="bian-yi-qi-ji-suan-ru-he-shi-xian">编译期计算如何实现</h3>
+<p>编译过程中 MIR （中级中间语言）阶段使用 MIRI（编译器内置MIR解释器）执行计算。</p>
+<blockquote>
+<p>常量泛型会依赖泛型的具体实现。</p>
+</blockquote>
+<h1 id="2-rust-zhong-biao-da-shi-expressions-de-fen-lei">2. Rust 中表达式（expressions）的分类</h1>
+<h2 id="wei-zhi-biao-da-shi">位置表达式</h2>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let</span><span style="color:#839496;"> a </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">; </span><span style="color:#586e75;">// a 就是位置表达式，42 就是值表达式，let 作用就是绑定。
+</span></code></pre>
+<p>包括：</p>
+<ul>
+<li>
+<p>静态变量初始化。比如：static mut LEVELS: u32 = 0;</p>
+</li>
+<li>
+<p>解引用表达式。形如 *expr</p>
+</li>
+<li>
+<p>数组索引表达式。形如 expr[expr]</p>
+</li>
+<li>
+<p>字段表达式。形如 expr.field</p>
+</li>
+<li>
+<p>加上括号的位置表达式。形如(expr)</p>
+</li>
+</ul>
+<h3 id="wei-zhi-shang-xia-wen">位置上下文</h3>
+<ol>
+<li>复合赋值操作的左侧</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> a </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">1</span><span style="color:#839496;">;
+a </span><span style="color:#657b83;">+= </span><span style="color:#6c71c4;">1</span><span style="color:#839496;">;
+</span></code></pre>
+<ol start="2">
+<li>一元『借用』和『解引用』操作中的操作数所在区域</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let</span><span style="color:#839496;"> a </span><span style="color:#657b83;">= </span><span style="color:#859900;">&amp;</span><span style="color:#93a1a1;">mut </span><span style="color:#6c71c4;">7</span><span style="color:#839496;">;
+</span><span style="color:#657b83;">*</span><span style="color:#839496;">a </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> b </span><span style="color:#657b83;">= </span><span style="color:#859900;">&amp;</span><span style="color:#839496;">a;
+</span></code></pre>
+<ol start="3">
+<li>字段表达式的操作数所在区域</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">struct </span><span style="color:#b58900;">A </span><span style="color:#657b83;">{
+    </span><span style="color:#268bd2;">name</span><span style="color:#839496;">: </span><span style="color:#859900;">&amp;</span><span style="color:#93a1a1;">&#39;static </span><span style="color:#268bd2;">str</span><span style="color:#839496;">,
+</span><span style="color:#657b83;">}
+
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> a </span><span style="color:#657b83;">=</span><span style="color:#839496;"> A</span><span style="color:#657b83;">{</span><span style="color:#839496;">name: &quot;</span><span style="color:#2aa198;">Alex</span><span style="color:#839496;">&quot;</span><span style="color:#657b83;">}</span><span style="color:#839496;">;
+a.name; 
+</span></code></pre>
+<ol start="4">
+<li>数组索引表达式的操作数所在区域</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> a </span><span style="color:#657b83;">= [</span><span style="color:#6c71c4;">1</span><span style="color:#839496;">, </span><span style="color:#6c71c4;">2</span><span style="color:#839496;">, </span><span style="color:#6c71c4;">3</span><span style="color:#657b83;">]</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> b </span><span style="color:#657b83;">= </span><span style="color:#859900;">&amp;</span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> a;
+a</span><span style="color:#657b83;">[</span><span style="color:#6c71c4;">1</span><span style="color:#657b83;">] = </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span></code></pre>
+<ol start="5">
+<li>任意隐式借用操作数所在的区域</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> v </span><span style="color:#657b83;">= </span><span style="color:#859900;">vec!</span><span style="color:#657b83;">[</span><span style="color:#6c71c4;">1</span><span style="color:#839496;">, </span><span style="color:#6c71c4;">2</span><span style="color:#839496;">, </span><span style="color:#6c71c4;">3</span><span style="color:#657b83;">]</span><span style="color:#839496;">;
+v.</span><span style="color:#859900;">push</span><span style="color:#657b83;">(</span><span style="color:#6c71c4;">4</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#586e75;">// push 方法调用会隐式借用 &amp;mut v，因为 push 方法的第一个参数就是 &amp;mut self
+</span></code></pre>
+<ol start="6">
+<li>let 语句初始化</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let</span><span style="color:#839496;"> a: </span><span style="color:#268bd2;">i32</span><span style="color:#839496;">;
+a </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span></code></pre>
+<ol start="7">
+<li>if let/ while let/ match 的匹配表达式所在的区域</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let</span><span style="color:#839496;"> dish </span><span style="color:#657b83;">= (</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">Ham</span><span style="color:#839496;">&quot;, &quot;</span><span style="color:#2aa198;">Eggs</span><span style="color:#839496;">&quot;</span><span style="color:#657b83;">)</span><span style="color:#839496;">;
+</span><span style="color:#859900;">if </span><span style="color:#268bd2;">let </span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">Bacon</span><span style="color:#839496;">&quot;, b</span><span style="color:#657b83;">) =</span><span style="color:#839496;"> dish</span><span style="color:#657b83;">{
+    </span><span style="color:#859900;">println!</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">Bacon is served with </span><span style="color:#cb4b16;">{}</span><span style="color:#839496;">&quot;, b</span><span style="color:#657b83;">)</span><span style="color:#839496;">;
+</span><span style="color:#657b83;">} </span><span style="color:#859900;">else </span><span style="color:#657b83;">{
+    </span><span style="color:#859900;">println!</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">No bacon will be served</span><span style="color:#839496;">&quot;</span><span style="color:#657b83;">)</span><span style="color:#839496;">;
+</span><span style="color:#657b83;">}
+
+</span><span style="color:#586e75;">// 同理
+// while let (位置上下文) = ... { ... }
+// match (位置上下文) { ... }
+</span></code></pre>
+<ol start="8">
+<li>结构体更新语法中的 base 表达式（..操作符后面的操作数区域）</li>
+</ol>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> base </span><span style="color:#657b83;">=</span><span style="color:#839496;"> Point3d</span><span style="color:#657b83;">{</span><span style="color:#839496;">x: </span><span style="color:#6c71c4;">1</span><span style="color:#839496;">, y: </span><span style="color:#6c71c4;">2</span><span style="color:#839496;">, z: </span><span style="color:#6c71c4;">3</span><span style="color:#657b83;">}</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> y_ref </span><span style="color:#657b83;">= </span><span style="color:#859900;">&amp;</span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> base.y;
+Point3d </span><span style="color:#657b83;">{</span><span style="color:#839496;">y: </span><span style="color:#6c71c4;">0</span><span style="color:#839496;">, z: </span><span style="color:#6c71c4;">10</span><span style="color:#839496;">, </span><span style="color:#859900;">..</span><span style="color:#839496;">base</span><span style="color:#657b83;">} </span><span style="color:#586e75;">// 得到 base.x
+</span></code></pre><h4 id="rust-suo-you-quan-yu-yi-zai-biao-da-shi-shang-de-ti-xian">Rust 所有权语义在表达式上的体现</h4>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let</span><span style="color:#839496;"> stack_a </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> stack_b </span><span style="color:#657b83;">=</span><span style="color:#839496;"> stack_a; </span><span style="color:#586e75;">// stack_a 出现在值上下文中，发生了 Copy
+</span><span style="color:#839496;">stack_a;
+
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> heap_a </span><span style="color:#657b83;">= </span><span style="color:#839496;">&quot;</span><span style="color:#2aa198;">hello</span><span style="color:#839496;">&quot;.</span><span style="color:#859900;">to_string</span><span style="color:#657b83;">()</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> heap_b </span><span style="color:#657b83;">=</span><span style="color:#839496;"> heap_a; </span><span style="color:#586e75;">// heap_a 出现在值
+</span><span style="color:#839496;">heap_a;
+</span></code></pre><h4 id="rust-jie-jian-liao-han-shu-shi-yu-yan-de-bu-ke-bian-te-xing">Rust 借鉴了函数式语言的不可变特性</h4>
+<p>包括：</p>
+<ul>
+<li>
+<p>不可变绑定与可变绑定</p>
+</li>
+<li>
+<p>继承式可变（inherited mutability）</p>
+</li>
+</ul>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#586e75;">// 变量遮蔽
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> answer </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> answer </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">43</span><span style="color:#839496;">;
+
+</span><span style="color:#586e75;">// 使用 mut 修饰符
+</span><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> answer </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span></code></pre>
+<ul>
+<li>可变引用</li>
+</ul>
+<pre style="background-color:#002b36;">
+<code class="language-rust" data-lang="rust"><span style="color:#268bd2;">let </span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> answer </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">42</span><span style="color:#839496;">;
+</span><span style="color:#268bd2;">let</span><span style="color:#839496;"> r </span><span style="color:#657b83;">= </span><span style="color:#859900;">&amp;</span><span style="color:#93a1a1;">mut</span><span style="color:#839496;"> answer;
+</span><span style="color:#657b83;">*</span><span style="color:#839496;">r </span><span style="color:#657b83;">= </span><span style="color:#6c71c4;">43</span><span style="color:#839496;">;
+</span><span style="color:#859900;">println!</span><span style="color:#657b83;">(</span><span style="color:#839496;">&quot;</span><span style="color:#cb4b16;">{:?}</span><span style="color:#839496;">&quot;, answer</span><span style="color:#657b83;">)</span><span style="color:#839496;">; </span><span style="color:#586e75;">// 43
+</span></code></pre>
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;rust&#x2F;">#rust</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch03&#x2F;">‹ Rust From Scratch chap.03 | Rust 中的数据类型、结构体和常用集合类型</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch01&#x2F;">Rust From Scratch chap.01 | Rust 的版本和词法结构 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - Rust From Scratch chap.01 | Rust 的版本和词法结构</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/rust-from-scratch-ch01/#1-rust-zhong-de-ban-ben-version" class="toc-link">1. Rust 中的版本（Version）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/rust-from-scratch-ch01/#2-rust-de-ci-fa-jie-gou-lexical" class="toc-link">2. Rust 的词法结构（Lexical）</a>
+                    
+                    <ul>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch01/#rust-de-bian-yi-guo-cheng" class="toc-link">Rust 的编译过程</a>
+                        </li>
+                        
+                        <li>
+                            <a href="https://jessun.github.io/rust-from-scratch-ch01/#rust-ci-fa-jie-gou" class="toc-link">Rust 词法结构</a>
+                        </li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/rust-from-scratch-ch01/#can-kao" class="toc-link">参考</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch01&#x2F;">Rust From Scratch chap.01 | Rust 的版本和词法结构</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2021-02-25</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <hr />
+<h1 id="1-rust-zhong-de-ban-ben-version">1. Rust 中的版本（Version）</h1>
+<p>Rust 语言的版本包括以下三个相互正交的概念：</p>
+<ul>
+<li>
+<p>语义化版本（Sem Ver, Semantic Versioning）：主版本号.次版本号.修订号</p>
+<ul>
+<li>主版本号：当做了不兼容的API修改</li>
+<li>次版本号：当做了向下兼容的功能性新增</li>
+<li>修订号：当做了向下兼容的问题修正。</li>
+</ul>
+</li>
+<li>
+<p>发行版本：nightly(master), beta, stable</p>
+</li>
+<li>
+<p>Edition 版次：2015 Edition, 2018 Edition, 2021 Edition</p>
+</li>
+</ul>
+<h1 id="2-rust-de-ci-fa-jie-gou-lexical">2. Rust 的词法结构（Lexical）</h1>
+<h2 id="rust-de-bian-yi-guo-cheng">Rust 的编译过程</h2>
+<ol>
+<li>
+<p>Rust 源码作为UTF8编码序列输入到编译器。</p>
+</li>
+<li>
+<p>进入到编译器之后经过分词，把词法结构处理为词条流（Tokens）。</p>
+</li>
+<li>
+<p>词条流（Tokens）经过解析成为抽象语法树（AST）。</p>
+</li>
+<li>
+<p>Rust 在会将抽象语法树降级为高级中间语言（HIR），高级中间语言（HIR）被编译器用于做代码类型检查、方法查找。
+版次差异会在这个阶段被消除。</p>
+</li>
+<li>
+<p>高级中间语言（HIR）会被进一步简化为中级中间语言（MIR），被用于借用检查、宏代码生成、单态化。</p>
+</li>
+<li>
+<p>中级中间语言（MIR）会被转译为LLVM中间语言（LLVM IR）。</p>
+</li>
+<li>
+<p>LLVM 后端最后生成机器码。</p>
+</li>
+</ol>
+<h2 id="rust-ci-fa-jie-gou">Rust 词法结构</h2>
+<ol>
+<li>
+<p>关键字（Keywords）</p>
+<ul>
+<li>
+<p>严格关键字（Strict）：特定用途和含义</p>
+<pre style="background-color:#002b36;">
+<code><span style="color:#839496;">as/async/await/break/const/continue/break/const/continue/crate/dyn/else/enum/extern/false/fn/for/
+</span><span style="color:#839496;">if/impl/in/let/loop/match/mod/move/mut/pub/ref/return/Self/self/static/struct/super/trait/true/type/ 
+</span><span style="color:#839496;">union/unsafe/use/where/while/
+</span></code></pre></li>
+<li>
+<p>保留字（Reserved）：将来可能会使用的关键字（也可能不会使用）</p>
+<pre style="background-color:#002b36;">
+<code><span style="color:#839496;">abstract/becom/box/do/final/macro/override/priv/try/typeof/unsized/virtual/yield
+</span></code></pre></li>
+<li>
+<p>弱关键字（Weak）：特定场景用途</p>
+<ul>
+<li>
+<p>2018 Edition: union, 'static</p>
+</li>
+<li>
+<p>2015 Edition: dyn</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>标识符（Identifier）</p>
+</li>
+</ol>
+<p>和大多数数编程语言一样，变量名只能以字母、下划线等开头，不可以使用数字开头。</p>
+<ol start="3">
+<li>
+<p>注释（Commnet）</p>
+<ul>
+<li>
+<p>模块级文档注释</p>
+<pre style="background-color:#002b36;">
+<code><span style="color:#839496;">// ! - 模块级文档注释，置于模块头部
+</span><span style="color:#839496;">//!! - 模块级文档注释，但是和上面的注释置于同一行
+</span><span style="color:#839496;">//!  - 模块级文档注释，但会换行
+
+</span><span style="color:#839496;">/*!  - 模块级文档注释 */
+</span><span style="color:#839496;">/*!! - 模块级文档注释，但是和上面的注释置于同一行 */
+</span><span style="color:#839496;">/*!  - 模块级文档注释，但会换行 */
+</span></code></pre></li>
+<li>
+<p>行级注释</p>
+<pre style="background-color:#002b36;">
+<code><span style="color:#839496;">//   - 普通行注释
+</span><span style="color:#839496;">///  - 行级文档注释（必须是3个斜杠）
+</span><span style="color:#839496;">//// - 普通行注释
+</span></code></pre></li>
+<li>
+<p>块级注释</p>
+<pre style="background-color:#002b36;">
+<code><span style="color:#839496;">/*   - 普通块级注释 */
+</span><span style="color:#839496;">/**  - 块级文档注释（精确）2个星号 */ 
+</span><span style="color:#839496;">/*** - 普通注释 */
+</span></code></pre></li>
+</ul>
+</li>
+</ol>
+<p>关于注释的其他：</p>
+<ul>
+<li>
+<p>注释可以相互嵌套和包含.</p>
+</li>
+<li>
+<p><code>/***/</code>这不是空的块级文档注释，而只是一个普通的块级注释</p>
+</li>
+<li>
+<p>文档注释下面必须要有语言项，比如方法、函数等。</p>
+</li>
+</ul>
+<ol start="4">
+<li>空白（Whitespace）</li>
+</ol>
+<ul>
+<li>
+<p>Rust 中空白字符包括：\n、\t、tab 等。</p>
+</li>
+<li>
+<p>任何形式的空白字符在 Rust 中只用于分隔标记，没有语义意义。</p>
+</li>
+</ul>
+<ol start="5">
+<li>词条（Tokens）</li>
+</ol>
+<p>包含：</p>
+<ul>
+<li>语言项（Item）</li>
+<li>块（Block）</li>
+<li>语句（Stmt）</li>
+<li>表达式（Expr）</li>
+<li>模式（Pattern）</li>
+<li>关键字（Keyword）</li>
+<li>标识符（Ident）</li>
+<li>字面量（Literal）</li>
+<li>生命周期（Lifetime）</li>
+<li>可见性（Vis）</li>
+<li>标点符号（Punctuation）</li>
+<li>分隔符（delimiter）</li>
+<li>词条树（Token Tree）</li>
+<li>属性（Attribute）</li>
+</ul>
+<ol start="6">
+<li>路径（Path）</li>
+</ol>
+<p><code>std::collections::*</code> 表示使用模块的函数或模块等。</p>
+<h1 id="can-kao">参考</h1>
+<ul>
+<li>[1] <a href="https://time.geekbang.org/course/detail/100060601-286522">张汉东的Rust实战课</a></li>
+</ul>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;rust&#x2F;">#rust</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch02-new&#x2F;">‹ Rust From Scratch chap.02 | Rust 中的表达式（expressions）与语句（statements）</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-development-nots&#x2F;">Rust 开发手记之 Makefile ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

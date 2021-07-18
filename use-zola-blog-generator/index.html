@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - 使用 Zola 作为静态博客生成器</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/use-zola-blog-generator/#1-jie-shao" class="toc-link">1. 介绍</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/use-zola-blog-generator/#2-yu-hugo-xiang-bi" class="toc-link">2. 与 Hugo 相比</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/use-zola-blog-generator/#3-zhu-ti" class="toc-link">3. 主题</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/use-zola-blog-generator/#4-github-page-bu-shu" class="toc-link">4. Github Page 部署</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;use-zola-blog-generator&#x2F;">使用 Zola 作为静态博客生成器</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2021-01-21</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <h1 id="1-jie-shao">1. 介绍</h1>
+<p>官网地址：<a href="https://www.getzola.org/">https://www.getzola.org/</a>。</p>
+<p>Zola 是一个静态博客生成器，就像 <a href="https://gohugo.io/">Hugo</a>。</p>
+<h1 id="2-yu-hugo-xiang-bi">2. 与 Hugo 相比</h1>
+<p>Zola 官方列了一张表格表示自己与Hugo的区别，<a href="https://github.com/getzola/zola#comparisons-with-other-static-site-generators">https://github.com/getzola/zola#comparisons-with-other-static-site-generators</a>。
+从特性上看，Zola 具有更多的特点，但是显然Hugo目前更具知名度。</p>
+<h1 id="3-zhu-ti">3. 主题</h1>
+<p><del>hermit_zola: https://github.com/jessun2017/hermit_zola 做了一些 bugfix。</del><br />
+<del>anpu-zola-theme: https://github.com/jessun2017/anpu-zola-theme 更加简洁</del><br />
+even: https://github.com/jessun2017/even 更加简洁美观</p>
+<h1 id="4-github-page-bu-shu">4. Github Page 部署</h1>
+<p>Zola 官方部署Github静态博客指引：<a href="https://www.getzola.org/documentation/deployment/github-pages/">https://www.getzola.org/documentation/deployment/github-pages/</a>。
+个人推荐的部署方式：
+仓库的 src 分支作为Blog撰写分支，将仓库 push 到远程Github。Zola 将 src 分支的静态文件生成后，发布到 master 分支上。
+这样就可以直接发布在 &lt;github_name&gt;.github.io 。</p>
+<pre style="background-color:#002b36;">
+<code class="language-yaml" data-lang="yaml"><span style="color:#b58900;">on</span><span style="color:#839496;">:
+  </span><span style="color:#268bd2;">push</span><span style="color:#839496;">:
+    </span><span style="color:#268bd2;">branches</span><span style="color:#839496;">: [ </span><span style="color:#2aa198;">src </span><span style="color:#839496;">]
+
+</span><span style="color:#268bd2;">jobs</span><span style="color:#839496;">:
+  </span><span style="color:#268bd2;">build</span><span style="color:#839496;">:
+    </span><span style="color:#268bd2;">runs-on</span><span style="color:#839496;">: </span><span style="color:#268bd2;">ubuntu-latest
+    steps</span><span style="color:#839496;">:
+      - </span><span style="color:#268bd2;">name</span><span style="color:#839496;">: &#39;</span><span style="color:#2aa198;">Checkout</span><span style="color:#839496;">&#39;
+        </span><span style="color:#268bd2;">uses</span><span style="color:#839496;">: </span><span style="color:#268bd2;">actions/checkout@master
+
+      </span><span style="color:#839496;">- </span><span style="color:#268bd2;">name</span><span style="color:#839496;">: </span><span style="color:#268bd2;">Clean directory ./public/
+        run</span><span style="color:#839496;">: </span><span style="color:#859900;">|
+</span><span style="color:#2aa198;">          rm -rf .git/worktrees/public/ 
+          rm -fr ./public/
+
+      </span><span style="color:#839496;">- </span><span style="color:#268bd2;">name</span><span style="color:#839496;">: &#39;</span><span style="color:#2aa198;">Build and deploy</span><span style="color:#839496;">&#39;
+        </span><span style="color:#268bd2;">uses</span><span style="color:#839496;">: </span><span style="color:#268bd2;">shalzz/zola-deploy-action@master
+        env</span><span style="color:#839496;">:
+          </span><span style="color:#268bd2;">PAGES_BRANCH</span><span style="color:#839496;">: </span><span style="color:#268bd2;">master
+          BUILD_DIR</span><span style="color:#839496;">: </span><span style="color:#6c71c4;">.
+          </span><span style="color:#268bd2;">TOKEN</span><span style="color:#839496;">: </span><span style="color:#2aa198;">${{ secrets.TOKEN }}
+</span></code></pre>
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+            
+                <div class="post-nav">
+                    
+                        <a class="previous" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch00&#x2F;">‹ Rust From Scratch chap.00 | Rust 介绍与安装</a>
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;rust-from-scratch-ch03&#x2F;">Rust From Scratch chap.03 | Rust 中的数据类型、结构体和常用集合类型 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>

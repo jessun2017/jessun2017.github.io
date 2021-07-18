@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+      <!-- Enable responsiveness on mobile devices-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+      <title>Jessun&#x27;s Blog - 《Vim 实用技巧》笔记</title>
+
+      
+
+      
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+              
+          <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+                  onload="renderMathInElement(document.body);"></script>
+              
+          
+      
+
+      
+          <link rel="stylesheet" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;site.css">
+          
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+          
+      
+
+      
+      
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="mobile-navbar" class="mobile-navbar">
+              <div class="mobile-header-logo">
+                <a href="/" class="logo">Jessun&#x27;s Blog</a>
+              </div>
+              <div class="mobile-navbar-icon icon-out">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <nav id="mobile-menu" class="mobile-menu slideout-menu slideout-menu-left">
+              <ul class="mobile-menu-list">
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io">
+                            Home
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                            Categories
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                            Tags
+                        </a>
+                    </li>
+                
+                    <li class="mobile-menu-item">
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                            About
+                        </a>
+                    </li>
+                
+              </ul>
+            </nav>
+
+            <header id="header">
+                <div class="logo"><a href="https:&#x2F;&#x2F;jessun.github.io">Jessun&#x27;s Blog</a></div>
+                <nav class="menu">
+                    <ul>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io">
+                                    Home
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;categories">
+                                    Categories
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags">
+                                    Tags
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;about">
+                                    About
+                                </a>
+                            </li>
+                        
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <div class="content" id="mobile-panel">
+                    
+
+
+<div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content always-active">
+        <nav id="TableOfContents">
+            <ul>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-4" class="toc-link">技巧4</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-9" class="toc-link">技巧9</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-10" class="toc-link">技巧10</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-11" class="toc-link">技巧11</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-12" class="toc-link">技巧12</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-13" class="toc-link">技巧13</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-14" class="toc-link">技巧14</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-15" class="toc-link">技巧15</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-16" class="toc-link">技巧16</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-21" class="toc-link">技巧21</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-28" class="toc-link">技巧28</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-29" class="toc-link">技巧29</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-30" class="toc-link">技巧30</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-31" class="toc-link">技巧31</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-33" class="toc-link">技巧33</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-34" class="toc-link">技巧34</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-39" class="toc-link">技巧39</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-40" class="toc-link">技巧40</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-44" class="toc-link">技巧44</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-53" class="toc-link">技巧53</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-54" class="toc-link">技巧54</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-56-dai-wan-shan" class="toc-link">技巧56（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-57" class="toc-link">技巧57</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-58" class="toc-link">技巧58</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-60" class="toc-link">技巧60</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-64" class="toc-link">技巧64</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-74" class="toc-link">技巧74</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-76" class="toc-link">技巧76</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-77-dai-wan-shan" class="toc-link">技巧77（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-78-dai-wan-shan" class="toc-link">技巧78（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-83" class="toc-link">技巧83</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-89" class="toc-link">技巧89</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-90-dai-wan-shan" class="toc-link">技巧90（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-91-dai-yan-jiu" class="toc-link">技巧91（待研究）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-92-dai-wan-shan" class="toc-link">技巧92（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-93" class="toc-link">技巧93</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-94-dai-wan-shan" class="toc-link">技巧94（待完善）</a>
+                    
+                </li>
+                
+                <li>
+                    <a href="https://jessun.github.io/practical-vim-reading-note/#ji-qiao-100-dai-wan-shan" class="toc-link">技巧100（待完善）</a>
+                    
+                </li>
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<article class="post">
+    
+    <header class="post__header">
+        <span class="post__title">
+            <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;practical-vim-reading-note&#x2F;">《Vim 实用技巧》笔记</a>
+        </span>
+        <span class="post__meta">
+            <span class="post__time">2017-12-14</span>
+            
+        </span>
+    </header>
+
+    <div class="post-content">
+      <h2 id="ji-qiao-4">技巧4</h2>
+<p><code>@:</code> 重复任意Ex命令</p>
+<h2 id="ji-qiao-9">技巧9</h2>
+<p><code>daw</code> 删除所在单词
+<code>dap</code> 删除所在段落</p>
+<h2 id="ji-qiao-10">技巧10</h2>
+<p><code>n&lt;C-a&gt;</code> 对数字进行加操作
+<code>n&lt;C-x&gt;</code> 对数字进行减操作</p>
+<h2 id="ji-qiao-11">技巧11</h2>
+<blockquote>
+<p>能够重复就别用次数</p>
+</blockquote>
+<p><code>dw.</code> 好于 <code>2dw</code> 好于 <code>d2w</code></p>
+<h2 id="ji-qiao-12">技巧12</h2>
+<p><code>g~</code> 反转大小写
+<code>gU</code> 转换为大写
+<code>gu</code> 转换为大写</p>
+<h2 id="ji-qiao-13">技巧13</h2>
+<p>插入模式下
+<code>&lt;C-h&gt;</code> 删除前一个字符
+<code>&lt;C-w&gt;</code> 删除前一个单词
+<code>&lt;C-u&gt;</code> 删除至行首</p>
+<h2 id="ji-qiao-14">技巧14</h2>
+<p>插入模式下
+<code>&lt;C-o&gt;</code> 进入插入普通模式
+<code>&lt;C-o&gt;zz</code> 插入模式下将当前行居于屏幕中央</p>
+<h2 id="ji-qiao-15">技巧15</h2>
+<p>插入模式下
+<code>&lt;C-r&gt;{register}</code> 将任意寄存器的内容插入到命令行</p>
+<h2 id="ji-qiao-16">技巧16</h2>
+<p>插入模式下
+<code>&lt;C-r&gt;=</code> 可以访问表达式寄存器</p>
+<h2 id="ji-qiao-21">技巧21</h2>
+<p>visual模式下
+<code>o</code> 切换高亮选区的活动端</p>
+<h2 id="ji-qiao-28">技巧28</h2>
+<p>用模式指定范围
+<code>:/pattern1/,/pattern2/p</code></p>
+<p>用偏移地址修正
+<code>:/pattern1/+1,/pattern2/-1p</code></p>
+<p>Ex可以使用的范围表示：</p>
+<pre style="background-color:#002b36;">
+<code class="language-VimL" data-lang="VimL"><span style="color:#839496;">符号    地址
+</span><span style="color:#6c71c4;">1</span><span style="color:#839496;">       文件行号
+$       文件最后一行
+</span><span style="color:#6c71c4;">0</span><span style="color:#839496;">       虚拟行，在第</span><span style="color:#6c71c4;">1</span><span style="color:#839496;">行上面
+</span><span style="color:#859900;">.</span><span style="color:#839496;">       光标所在行
+`m      包含位置标记m的所在行
+`&lt;      高亮选区的起始行
+`&gt;      高亮选取的结束行
+</span><span style="color:#859900;">%</span><span style="color:#839496;">       整个文件
+</span></code></pre><h2 id="ji-qiao-29">技巧29</h2>
+<p><code>:t</code>和<code>:copy</code>等效</p>
+<h2 id="ji-qiao-30">技巧30</h2>
+<p><code>:'&lt;,'&gt;normal .</code> 对高亮选区的每一行，执行.命令
+<code>:%normal A;</code> 整个文件所有行最后添加;</p>
+<h2 id="ji-qiao-31">技巧31</h2>
+<p><code>@:</code> 重复执行Ex命令</p>
+<h2 id="ji-qiao-33">技巧33</h2>
+<p>Ex命令下
+<code>&lt;C-r&gt;&lt;C-w&gt;</code> 将光标所在单词插入Ex命令行</p>
+<p><code>:%s//&lt;C-r&gt;&lt;C-w&gt;/g</code> 将先前的替换为光标处单词 </p>
+<p><code>q/</code> 打开查找命令历史的命令行窗口
+<code>q:</code> 打开Ex命令历史的命令行窗口
+<code>&lt;C-f&gt;</code> 从命令行模式切换到命令行窗口</p>
+<h2 id="ji-qiao-34">技巧34</h2>
+<p><code>write | !python %</code> 保存并使用python执行该文件</p>
+<h2 id="ji-qiao-39">技巧39</h2>
+<p><code>:on[ly]</code>或<code>&lt;C-w&gt;o</code> 只保留活动窗口，关闭其他窗口</p>
+<p><code>&lt;C-w&gt;=</code> 使所有窗口等宽、等高
+<code>&lt;C-w&gt;_</code> 最大化活动窗口的高度
+<code>&lt;C-w&gt;|</code> 最大化活动窗口的宽度
+<code>[N]&lt;C-w&gt;_</code> 把活动窗口的高度设为[N]行
+<code>[N]&lt;C-w&gt;|</code> 把活动窗口的高度设为[N]行</p>
+<h2 id="ji-qiao-40">技巧40</h2>
+<p><code>:tabe[dit]{filename}</code> 新标签页中打开{filename}
+<code>&lt;C-w&gt;T</code> 把当前窗口移到一个新标签页
+<code>:tabc[lose]</code> 关闭当前标签页及其中所有的窗口
+<code>:tabo[nly]</code> 只保留活动标签页，关闭其他标签页</p>
+<h2 id="ji-qiao-44">技巧44</h2>
+<p><code>:!mkdir -p %:h</code> 创建当前文件的目录
+<code>:w !sudo tee % &gt; /dev/null</code> 没有root权限时候，强行保存文件</p>
+<h2 id="ji-qiao-53">技巧53</h2>
+<pre style="background-color:#002b36;">
+<code class="language-VimL" data-lang="VimL"><span style="color:#839496;">`` 当前文件中上次跳转动作之前的位置
+`</span><span style="color:#859900;">.</span><span style="color:#839496;"> 上次修改的地方
+`^ 上次插入的地方
+`[ 上次修改或复制的起始位置
+`] 上次修改或复制的结束位置
+`&lt; 上次高亮选区的起始位置
+`&gt; 上次高亮选区的结束位置
+</span></code></pre><h2 id="ji-qiao-54">技巧54</h2>
+<p><code>&lt;C-o&gt;</code>和<code>&lt;C-i&gt;</code> 跳转和来回跳转</p>
+<h2 id="ji-qiao-56-dai-wan-shan">技巧56（待完善）</h2>
+<p><code>g;</code>和<code>g,</code> 反向或正向遍历改变列表
+<code>gi</code> 快速退回到早先的insert模式的地方</p>
+<h2 id="ji-qiao-57">技巧57</h2>
+<blockquote>
+<p>可能需要设置指定文件的扩展名设置
+<code>gf</code> 快速跳到光标文件</p>
+</blockquote>
+<h2 id="ji-qiao-58">技巧58</h2>
+<p><code>m{letter}</code> {letter}如果是大写的话，就是全局标记。</p>
+<h2 id="ji-qiao-60">技巧60</h2>
+<p><code>&quot;&quot;</code> 无名寄存器
+<code>&quot;0</code> 复制专用寄存器
+<code>&quot;+</code> 系统剪贴板
+<code>&quot;*</code> 选择专用寄存器
+<code>&quot;=</code> 表达式寄存器</p>
+<h2 id="ji-qiao-64">技巧64</h2>
+<p><code>@@</code> 回放宏</p>
+<h2 id="ji-qiao-74">技巧74</h2>
+<p>使用正则表达式查找，就用模式开关\v，使用原义查找文本，就用原义开关\V。
+<code>/\v&lt;(\w+)\_s+\1&gt;</code> 匹配重复单词的正则表达式
+<code>&lt;</code>和<code>&gt;</code>用于匹配单词的边界，<code>\_s</code>匹配空白符或者换行符，<code>\1</code>匹配第一个<code>( )</code></p>
+<h2 id="ji-qiao-76">技巧76</h2>
+<p><code>/\v&lt;the&gt;</code> 用来匹配单词<code>the</code></p>
+<h2 id="ji-qiao-77-dai-wan-shan">技巧77（待完善）</h2>
+<h2 id="ji-qiao-78-dai-wan-shan">技巧78（待完善）</h2>
+<h2 id="ji-qiao-83">技巧83</h2>
+<p><code>/lang/e&lt;CR&gt;</code> 匹配<code>lang</code>光标定位到末尾</p>
+<h2 id="ji-qiao-89">技巧89</h2>
+<p><code>:%s/content/copy/gc</code> 引入标志位c之后，每次替换都会有提示。
+y 确认替换
+n 忽略替换
+q 退出替换
+l 替换后退出
+a 替换此后所有
+<C-e> 向上滚动屏幕
+<C-y> 向下滚动屏幕</p>
+<h2 id="ji-qiao-90-dai-wan-shan">技巧90（待完善）</h2>
+<h2 id="ji-qiao-91-dai-yan-jiu">技巧91（待研究）</h2>
+<p><code>:%s//&lt;C-r&gt;0/g</code> 将寄存器0贴出来
+<code>:%s//\=@0/g</code> <code>\=</code>将指示Vim执行一段表达式脚本，<code>@0</code>返回复制专用寄存器内容，<code>@&quot;</code>返回无名寄存器内容</p>
+<h2 id="ji-qiao-92-dai-wan-shan">技巧92（待完善）</h2>
+<h2 id="ji-qiao-93">技巧93</h2>
+<pre style="background-color:#002b36;">
+<code class="language-VimL" data-lang="VimL"><span style="color:#839496;">/</span><span style="color:#859900;">\</span><span style="color:#839496;">v^([^,]</span><span style="color:#859900;">*</span><span style="color:#839496;">),([^,]</span><span style="color:#859900;">*</span><span style="color:#839496;">),([^,]</span><span style="color:#859900;">*</span><span style="color:#839496;">)$
+:</span><span style="color:#859900;">%</span><span style="color:#839496;">s</span><span style="color:#2aa198;">//</span><span style="color:#859900;">\</span><span style="color:#6c71c4;">3</span><span style="color:#839496;">,</span><span style="color:#859900;">\</span><span style="color:#6c71c4;">2</span><span style="color:#839496;">,</span><span style="color:#859900;">\</span><span style="color:#6c71c4;">1
+</span></code></pre><h2 id="ji-qiao-94-dai-wan-shan">技巧94（待完善）</h2>
+<p><code>:g/re/d</code> 删除所有匹配行
+<code>:v/re/d</code> 保留所有匹配行</p>
+<h2 id="ji-qiao-100-dai-wan-shan">技巧100（待完善）</h2>
+
+    </div>
+
+    
+    
+
+    <div class="post-footer">
+        
+            
+                <div class="post-tags">
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;vim&#x2F;">#vim</a>
+                    
+                        <a href="https:&#x2F;&#x2F;jessun.github.io&#x2F;tags&#x2F;reading-note&#x2F;">#reading-note</a>
+                    
+                </div>
+            
+            
+                <div class="post-nav">
+                    
+                    
+                        <a class="next" href="https:&#x2F;&#x2F;jessun.github.io&#x2F;dotfiles-management&#x2F;">Linux &#x2F; Mac OS dotfiles 文件备份还原最佳实践 ›</a>
+                    
+                    
+                    
+                </div>
+            
+
+        
+
+    </div>
+
+    
+    
+</article>
+
+
+                </div>
+            </main>
+
+            
+            
+        </div>
+
+      
+          <script type="text/javascript" src="https:&#x2F;&#x2F;jessun.github.io&#x2F;even.js" ></script>
+      
+    </body>
+
+</html>
